@@ -1,0 +1,39 @@
+.grace-and-care-navbar {
+  background-color: #f7f1e3; /* Light beige from the image */
+  padding: 1rem;
+}
+
+.logo {
+  height: 50px; /* Adjust as needed */
+  margin-right: 10px;
+}
+
+.logo-text {
+  font-family: sans-serif; /* Use a font similar to the image */
+  font-weight: bold;
+  font-size: 1.5rem;
+  color: #555; /* Dark gray color */
+}
+
+.btn-quote {
+  background-color: #00b894; /* Teal color */
+  border-color: #00b894;
+}
+
+.btn-enquire {
+  background-color: #e84393; /* Pink/Purple color */
+  border-color: #e84393;
+}
+
+.location-info {
+  display: flex;
+  align-items: center;
+  margin-left: 20px;
+  color: #555;
+  font-size: 1rem;
+}
+
+.location-icon {
+  font-size: 1.2rem;
+  margin-left: 5px;
+}

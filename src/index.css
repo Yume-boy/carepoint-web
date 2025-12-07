@@ -1,0 +1,653 @@
+* {
+    padding: 0;
+    margin: 0;
+    /* font-weight: 300; */
+}
+
+h2,h3,h4,h5,h6 {
+    font-weight: 300;
+}
+
+.nav1 {
+    /* display: flex;
+    justify-content: space-between;
+    padding: 15px 50px;
+    align-items: center; */
+    background-color: #e6e6e6;
+    /* width: 100%; */
+}
+ .bg {
+    background-color: #c4bbbbaf;
+ }
+
+ .clip {
+    clip-path: polygon(0 0, 100% 0, 100% 100%, 10% 100%);
+    border-bottom: 2px solid #3BAFBF;
+    background-color: white;
+    
+ }
+
+/* .nav ul  {
+    display: flex;
+    list-style: none;
+    gap: 20px;
+} */
+
+
+
+
+
+/* NavBar2.css */
+
+/* Base navbar styling with transition */
+.nav1 {
+  transition: background-color 0.4s ease;
+}
+
+/* New class for the scrolled state */
+.scrolled-bg {
+  background-color: white;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+/* Styling for the 'clip' div */
+.clip {
+  height: auto;
+  overflow: hidden;
+  transition: transform 0.5s ease, opacity 0.5s ease, margin 0.5s ease, padding 0.5s ease;
+  will-change: transform, opacity; /* smooth GPU-accelerated animations */
+}
+
+/* New class to make the 'clip' div transition up and collapse space */
+.clip-up {
+  transform: translateY(-100%);
+  opacity: 0;
+  height: 0;
+  padding-top: 0;
+  padding-bottom: 0;
+  margin-top: 0;
+  margin-bottom: 0;
+}
+
+/* Base logo styling */
+.fusion-standard-logo {
+  transition: width 0.4s ease, height 0.4s ease;
+}
+
+/* New class to make the logo shrink */
+.logo-shrink {
+  width: 70px;
+  height: 70px;
+}
+
+/* Burger icon */
+.burger {
+  background: none;
+  border: none;
+  cursor: pointer;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  width: 28px;
+  height: 22px;
+  padding: 0;
+  z-index: 1051;
+  transition: transform 0.4s ease;
+}
+
+.burger span {
+  display: block;
+  height: 3px;
+  width: 100%;
+  background: #40BACA;
+  border-radius: 2px;
+  transition: all 0.4s ease;
+}
+
+/* Animate burger to X */
+.burger.open span:nth-child(1) {
+  transform: rotate(45deg) translate(5px, 5px);
+}
+
+.burger.open span:nth-child(2) {
+  opacity: 0;
+}
+
+.burger.open span:nth-child(3) {
+  transform: rotate(-45deg) translate(6px, -6px);
+}
+
+/* Sidebar menu */
+.mobile-menu {
+  position: fixed;
+  top: 0;
+  right: -100%;
+  width: 75%;
+  max-width: 320px;
+  height: 100vh;
+  background: white;
+  box-shadow: -2px 0 10px rgba(0,0,0,0.1);
+  padding: 80px 20px 20px;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  transition: right 0.4s ease;
+  z-index: 1050;
+}
+
+.mobile-menu.show {
+  right: 0;
+}
+
+/* Smooth transitions */
+.nav1 {
+  transition: background-color 0.4s ease, box-shadow 0.4s ease;
+}
+
+.fusion-standard-logo {
+  transition: width 0.4s ease, height 0.4s ease;
+}
+
+
+/* Add this to your CSS file or a style tag */
+
+/* Desktop Dropdown Styles */
+/* Desktop Dropdown Styles */
+.dropdown-menu-desktop {
+    /* Keep existing styles like position, etc. */
+    position: absolute;
+    top: 120%;
+    left: 50%;
+    transform: translateX(-50%);
+    background-color: white;
+    border: 1px solid #ccc;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    padding: 10px;
+    min-width: 150px;
+    z-index: 1000;
+    display: flex;
+    flex-direction: column;
+
+    /* ANIMATION STYLES */
+    max-height: 0; /* Starts with no height */
+    overflow: hidden; /* Hides content */
+    opacity: 0; /* Fade effect */
+    transition: max-height 0.3s ease-in-out, opacity 0.3s ease-in-out;
+}
+
+.lampa:hover .dropdown-menu-desktop.show {
+    max-height: 200px; 
+    opacity: 1;
+}
+
+.dropdown-menu-desktop a {
+  text-decoration: none;
+  color: black;
+  padding: 8px 12px;
+  white-space: nowrap;
+  transition: all .3s ease-in-out;
+}
+
+.dropdown-menu-desktop a:hover {
+  background-color: #f0f0f0;
+}
+
+/* Mobile Dropdown Styles */
+.dropdown-mobile {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    /* ANIMATION STYLES */
+    max-height: 0;
+    overflow: hidden;
+    transition: max-height 0.5s ease-in-out;
+}
+
+.dropdown-mobile.show-dropdown {
+    max-height: 500px; /* Adjust this value */
+}
+
+
+
+
+
+
+
+.link  {
+    color: #fff;
+    text-decoration: none;
+}
+
+.link:hover {
+    color: #40BACA;
+}
+
+.link:active {
+    color: #40BACA;
+}
+
+.space {
+    gap: 30px;
+}
+
+.segoe {
+    font-family: 'Segoe UI', Tahoma, Geneva, Verdana, sans-serif !important;
+}
+
+
+.hero {
+    background: linear-gradient( rgba(0, 0, 0, 0.5), rgba(0, 0, 0, 0.5) ), url('https://www.mua.edu/uploads/sites/10/2023/02/istock-482499394.webp') ;
+    background-size: cover;  /* Makes sure the image covers the whole page */
+    background-position: center;  /* Centers the image */
+    background-repeat: no-repeat; 
+    height: 100vh; 
+    position: relative;
+    display: flex;
+    align-items: center;
+    /* padding: 0 50px; */
+}
+
+
+.hero-2 h2 {
+    font-size: calc(24px + (50 - 24) * ((100vw - 320px) / (1200 - 320)));
+}
+
+.hero-3 h2 {
+    font-size: calc(24px + (50 - 24) * ((100vw - 320px) / (1200 - 320)));
+}
+
+.hero-4 h2 {
+    font-size: calc(24px + (50 - 24) * ((100vw - 320px) / (1200 - 320)));
+}
+
+
+
+.hero span {
+    color: #3BAFBF;
+}
+
+.hero h2 {
+    font-size: 60px;
+    color: #fff;
+    font-weight: 300;
+
+}
+
+.hero p {
+    color: #fff;
+    font-size: 30px;
+    font-weight: 300;
+
+}
+
+.learn {
+    background-color: #40baca;
+    width: 250px;
+    color: #fff;
+    display: flex;
+    justify-content: center;
+    height: 70px;
+    align-items: center;
+    font-size: 20px;
+    
+}
+
+.navLink {
+    text-decoration: none;
+}
+
+.bg-primary {
+    background-color: #40baca;
+}
+
+.no2 h3 {
+    font-size: 35px;
+    /* font-weight: 300; */
+}
+
+.no2 {
+    display: flex;
+    justify-content: center;
+    /* padding: 50px ; */
+    align-items: center;
+    flex-direction: column;
+}
+
+.line {
+    width: 300px;
+    height: 2px;
+    background-color: #E0DEDE;
+}
+
+.no2 h4 {
+    /* width: 65%; */
+    text-align: center;
+    line-height: 2;
+}
+
+.info {
+    width: 100%;
+    padding: 20px 0;
+}
+
+.info div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.info h3, .info h5 {
+    color: #5f5f5f;
+}
+
+.form-field {
+            position: relative;
+            width: 100%;  /* Full viewport height */
+            background: linear-gradient( rgba(55, 60, 110, 0.5), rgba(55, 60, 110, 0.5) ),  url('https://miro.medium.com/v2/resize:fit:1400/0*0Dk9Foiam83oGGrl');
+            background-size: cover;
+            background-position: center;
+            /* background-repeat: no-repeat; */
+            background-attachment: fixed;  
+            transition: background-position 0.1s linear;
+            color: #000;
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            border-bottom-left-radius: 10%;
+            border-bottom-right-radius: 10%;
+            /* mask: conic-gradient(from -45deg at bottom,#0000,#000 1deg 89deg,#0000 90deg) 50%/60px 100% */
+            
+            
+}
+
+.baby {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    
+}
+
+.child {
+    width: 100%;
+}
+
+.child img {
+    width: 70%;
+}
+
+.readMore:hover {
+    color: #fff;
+    background-color: #40BACA;
+    padding: 10px 20px;
+    border-radius: 5px;
+}
+
+.readMore {
+    color: #40BACA;
+    background-color: #fff;
+    padding: 10px 20px;
+    border-radius: 5px;
+    border: 1px solid #40BACA;
+    font-weight: 400 ;
+    transition: all .2s ease-in-out;
+}
+
+.workWith ul li{
+    list-style: none;
+    color: #9b9b9b;
+}
+
+
+
+.form-field h3 {
+    font-size: 45px;
+}
+
+.form-field input {
+    background-color: transparent;
+    border: 1px solid #c4c2c2;
+    color: #fff;
+    width: 100%;
+    height: 50px;
+    padding: 5px;
+}
+
+.width-75 {
+    width: 75%;
+}
+
+/* Hide Google Translate top banner */
+.goog-te-banner-frame.skiptranslate {
+    display: none !important;
+  } 
+  body {
+    top: 0px !important; 
+  }
+  
+  /* Hide Google Translate powered logo */
+  .goog-logo-link {
+    display: none !important;
+  }
+  .goog-te-gadget {
+    font-size: 0 !important;
+  }
+  
+  /* Make the dropdown look normal */
+  .goog-te-combo {
+    font-size: 16px !important;
+    padding: 5px;
+    border-radius: 5px;
+  }
+  
+
+
+.form-field form span {
+    display: grid;
+    grid-template-columns: 2fr 2fr;
+    gap: 40px;
+}
+
+.form-field form {
+    width: 60%;
+}
+
+
+::placeholder {
+    color: #fff;
+}
+
+.form-field button {
+    background-color: #3BAFBF;
+    height: 60px;
+    width: 100%;
+    border: none;
+    color: #fff;
+    padding: 10px;
+    font-size: 20px;
+}
+
+.no3 div {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    padding: 40px;
+    color: #fff;
+    /* gap: 20px; */
+    text-align: center;
+    height: 300px;
+}
+
+
+
+
+.no3 div:nth-child(1) {
+    background-color: #3BAFBF;
+}
+.no3 div:nth-child(4) {
+    background-color: #3BAFBF;
+}
+
+.no3 div:nth-child(2) {
+    background-color: #3697C3;
+}
+
+.no3 div:nth-child(3) {
+    background-color: #327EC7;
+}
+
+.no3 button {
+    background-color: transparent;
+    border: 1px solid #fff;
+    color: #fff;
+    height: 50px;
+    width: 200px;
+    margin-top: 50px;
+}
+
+.no4 {
+    background: linear-gradient(to right, #4EB1B7, #417CB6 );
+    display: flex;
+}
+
+.carousel-container {
+  overflow: hidden;
+  white-space: nowrap;
+  width: 100%;
+  position: relative;
+}
+
+.carousel-track {
+  display: flex;
+  gap: 10px;
+  animation: scrollLeft 10s linear infinite;
+}
+
+.carousel-image {
+  width: 300px; /* Adjust based on your needs */
+  height: 200px;
+  object-fit: cover;
+}
+
+.top {
+    clip-path: polygon(0 0,100% 0,100% calc(100% - 50px),calc(50% + 50px) calc(100% - 50px),50% 100%,calc(50% - 50px) calc(100% - 50px),0 calc(100% - 50px));
+    /* background-color: #40baca75; */
+}
+.bottom {
+      /* background-color: #40baca75; */
+      border-top: #000 2px solid;
+    clip-path: polygon(0 0,calc(50% - 4.14px - 50px) 0,50% calc(50px + 4.14px),calc(50% + 4.14px + 50px) 0,100% 0,100% 100%,0 100%);
+    margin-top: -40px;
+  }
+
+  
+
+
+
+@keyframes scrollLeft {
+  from {
+    transform: translateX(0);
+  }
+  to {
+    transform: translateX(-50%);
+  }
+}
+
+.foot {
+    list-style: none;
+}
+
+.short-line {
+    width: 70px;
+    height: 2px;
+    background-color: #40BACA;
+}
+
+.icon {
+    color: #40BACA;
+}
+
+.iconFilled {
+    background-color: #40BACA;
+    color: #fff;
+    border-radius: 50%;
+}
+
+.split {
+    display: flex;
+    gap: 5px;
+}
+
+.footer span:hover {
+    color: #40baca;
+}
+
+.footer span{
+    transition: .1s ease-in-out;
+}
+
+.contact {
+    border: 1px solid #40BACA;
+    width: 60%;
+    display: flex;
+    height: 50px;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    font-size: 20px;
+    transition: .1s ease-in;
+    color: #40BACA;
+    
+}
+
+.contact:hover {
+    background-color: #40baca;
+    color: #FFF;
+    border: #fff;
+    cursor: pointer;
+}
+
+.footer a {
+    text-decoration: none;
+    color: inherit;
+}
+
+.footer img {
+    width: 100px;
+}
+
+.contact2 input {
+    height: 60px;
+    background-color: #ebebebaf;
+    border: #8d8d8daf 1px solid;
+}
+
+.contact2 form {
+    /* height: 400px; */
+    width: 100%;
+}
+
+@media (max-width: 600px) {
+   .no2 h3 {
+        font-size: 30px;
+        text-align: center;
+    }
+
+
+    .width-75 {
+        width: 100%;
+    }
+
+    .info {
+        display: block;
+    }
+
+    .form-field form {
+        width: 100%;
+    }
+
+    .no3 {
+        display: block;
+    }
+}
