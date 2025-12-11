@@ -12,7 +12,7 @@ import {
   Users,
   Smile,
   Compass,
-  Upload,
+  // Upload,
   Send,
   Loader2,
   CheckCircle,
@@ -20,58 +20,17 @@ import {
   MapPin,
   ClipboardList,
 } from 'lucide-react';
+import careImage from './careers.jpeg'
 
 // Placeholder for the Hero image (as local imports are not supported here)
-const careersHeroUrl = 'https://placehold.co/1920x400/40BACA/ffffff?text=Join+A+Team+That+Cares';
+const careersHeroUrl = careImage;
 
 // Define the brand color for Bootstrap
 const brandColorHex = '#40BACA'; // Teal/Cyan
 const darkCtaBgHex = '#3F4A49'; // Dark Accent
 
-// --- DUMMY DATA FOR JOB LISTINGS ---
-const DUMMY_JOB_LISTINGS = [
-    {
-        id: 'job-001',
-        title: 'Senior Domiciliary Carer (Team Lead)',
-        category: 'Domiciliary Carer',
-        location: 'Central Manchester',
-        type: 'Full-Time',
-        summary: 'Lead a small team providing complex care packages in clients\' homes. Requires 2+ years experience and level 3 qualification.',
-    },
-    {
-        id: 'job-002',
-        title: 'Agency Support Worker - Nights',
-        category: 'Healthcare Assistant (HCA) / Support Worker (SW)',
-        location: 'Stockport & Oldham Area',
-        type: 'Part-Time/Flexible',
-        summary: 'Essential night cover shifts in residential care settings. Perfect for experienced agency staff seeking reliable hours.',
-    },
-    {
-        id: 'job-003',
-        title: 'Community Companion - Elderly',
-        category: 'Companionship Support Worker',
-        location: 'South Cheshire',
-        type: 'Part-Time',
-        summary: 'Provide social engagement, routine support, and check-ins for elderly clients. Emphasis on conversational skills and reliability.',
-    },
-    {
-        id: 'job-004',
-        title: 'Wellbeing Practitioner - Remote',
-        category: 'Wellbeing Practitioner',
-        location: 'Remote (UK Based)',
-        type: 'Full-Time',
-        summary: 'Deliver non-clinical online wellbeing sessions to young adults and students. Training provided on specific techniques.',
-    },
-];
 
-const Roles = [
-  { id: 1, icon: Briefcase, title: 'Domiciliary Care Staff', position: 'Domiciliary Carer' },
-  { id: 2, icon: Users, title: 'Healthcare Assistants & Support Workers (Agency Staffing)', position: 'Healthcare Assistant (HCA) / Support Worker (SW)' },
-  { id: 3, icon: Smile, title: 'Companionship & Non-Regulated Support Workers', position: 'Companionship Support Worker' },
-  { id: 4, icon: Compass, title: 'Wellbeing Practitioners (Online & Face-to-Face)', position: 'Wellbeing Practitioner' },
-  // Adding the "Other" option for the dropdown
-  { id: 5, icon: Layers, title: 'Other / General Application', position: 'Other' },
-];
+
 
 const CustomStyles = () => (
     <style>
@@ -126,6 +85,7 @@ const CustomStyles = () => (
             border-radius: 12px;
             box-shadow: 0 0.25rem 0.5rem rgba(0, 0, 0, 0.05);
         }
+
       `}
     </style>
 );
@@ -135,16 +95,18 @@ const Careers = () => {
   const [jobListings, setJobListings] = useState([]);
   const [loadingJobs, setLoadingJobs] = useState(true);
   const [selectedJobId, setSelectedJobId] = useState(null);
+  const [showform, setShowform] = useState('d-none')
 
   const applyFormRef = useRef(null);
 
   const [formData, setFormData] = useState({
-    fullName: '',
+    jobId: '',
+    candidate_name: '',
     email: '',
-    phoneNumber: '',
+    // phoneNumber: '',
     position: '',
-    message: '',
-    cvFile: null,
+    // message: '',
+    cvFile: '',
   });
   const [isSubmitting, setIsSubmitting] = useState(false);
   const [submissionStatus, setSubmissionStatus] = useState(null); // 'success', 'error', or null
@@ -158,15 +120,12 @@ const Careers = () => {
       const data = await response.json();
       setJobListings(data);
     } catch (error) {
-      console.error("Error fetching jobs:", error);
-      setJobListings(DUMMY_JOB_LISTINGS); // Fallback to dummy data on error
+      console.error("Error fetching jobs:", error); 
     } finally {
       setLoadingJobs(false);
     }
     
-    // --- Dummy Data Simulation ---
-    await new Promise(resolve => setTimeout(resolve, 1500)); // Simulate network delay
-    setJobListings(DUMMY_JOB_LISTINGS);
+    await new Promise(resolve => setTimeout(resolve, 1500)); 
     setLoadingJobs(false);
   };
 
@@ -192,46 +151,72 @@ const Careers = () => {
     setFormData({ ...formData, [name]: value });
   };
 
-  const handleFileChange = (e) => {
-    setFormData({ ...formData, cvFile: e.target.files[0] });
-  };
+  // const handleFileChange = (e) => {
+  //   setFormData({ ...formData, cvFile: e.target.files[0] });
+  // };
 
   const handleApplyClick = (job) => {
-    setSelectedJobId(job.id);
+    setShowform('')
+    // setSelectedJobId(job.id);
+    formData.position = job.title
+    formData.jobId = job.jobId
     // Scroll to the application form section
-    if (applyFormRef.current) {
-        applyFormRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    setTimeout(()=> {
+      applyFormRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 0)
+  };
+
+  const handleSubmit = async (e) => {
+  e.preventDefault();
+  setIsSubmitting(true);
+  setSubmissionStatus(null);
+
+  try {
+    const response = await fetch("https://carepoint-o1yb.onrender.com/jobApplication/apply", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json"
+      },
+      body: JSON.stringify({
+        jobId: formData.jobId,
+        candidate_name: formData.candidate_name,
+        email: formData.email,
+        resume_url: formData.cvFile
+      })   // Convert to JSON properly
+    });
+
+    const data = await response.json();
+    console.log("API Response:", data);
+
+    if (!response.ok) {
+      throw new Error(data.message || "Failed to submit application");
     }
-  };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    setIsSubmitting(true);
-    setSubmissionStatus(null);
+    // API success path
+    setSubmissionStatus("success");
+    setSelectedJobId(null);
 
-    // --- MOCK API CALL for Application Submission ---
-    setTimeout(() => {
-      console.log('Application submitted:', formData);
-      setIsSubmitting(false);
-      
-      const success = Math.random() > 0.1; 
-      
-      if (success) {
-        setSubmissionStatus('success');
-        setSelectedJobId(null); // Clear selection
-        setFormData({
-            fullName: '',
-            email: '',
-            phoneNumber: '',
-            position: '',
-            message: '',
-            cvFile: null,
-        }); // Clear form
-      } else {
-        setSubmissionStatus('error');
-      }
-    }, 2000);
-  };
+    setFormData({
+      jobId: '',
+      candidate_name: '',
+      email: '',
+      // phoneNumber: '',
+      position: '',
+      // message: '',
+      cvFile: '',
+    });
+
+  } catch (error) {
+    console.error("Submission Error:", error);
+    setSubmissionStatus("error");
+  }
+
+  setIsSubmitting(false);
+  setTimeout(()=> {
+      applyFormRef.current.scrollIntoView({ behavior: 'smooth', block: 'start' });
+    }, 0)
+};
+
 
   const statusMessage = submissionStatus === 'success' ? (
     <div className="alert alert-success d-flex align-items-center rounded-3 shadow-sm" role="alert">
@@ -295,17 +280,23 @@ const Careers = () => {
             ) : (
                 <div className="row g-4 justify-content-center">
                     {jobListings.map((job) => (
-                        <div key={job.id} className="col-md-6 col-lg-4">
+                        <div key={job.jobId} className="col-md-6 col-lg-4">
                             <div className="card h-100 border-0 rounded-4 shadow-sm p-2 feature-card">
                                 <div className="card-body d-flex flex-column">
+                                  <div className='d-flex justify-content-between'>
                                     <h4 className="h5 fw-bold text-dark mb-2">{job.title}</h4>
+                                    <div className={`rounded-pill fs-6 ${job.status == 'open' ? 'bg-success': 'bg-danger'} text-white py-1 px-2 flex align-itpill`}>
+                                      {job.status}
+                                    </div>
+                                  </div>
                                     <div className="d-flex small text-muted mb-3">
                                         <div className="me-3 d-flex align-items-center"><MapPin size={16} className="me-1 text-secondary" /> {job.location}</div>
-                                        <div className="d-flex align-items-center"><Clock size={16} className="me-1 text-secondary" /> {job.type}</div>
+                                        <div className="d-flex align-items-center"><Clock size={16} className="me-1 text-secondary" /> {job.department}</div>
                                     </div>
-                                    <p className="card-text mb-3">{job.summary}</p>
+                                    <p className="card-text mb-3">{job.description}</p>
                                     <div className="mt-auto">
-                                        {/* <span className="badge rounded-pill text-black  mb-3">{job.category}</span> */}
+                                        <span className="badge rounded-pill text-black  mb-3">{job.salary_range}</span>
+                                        <span className="badge rounded-pill text-black  mb-3">{job.employment_type}</span>
                                         <button 
                                             onClick={() => handleApplyClick(job)}
                                             className="btn btn-sm btn-cp-primary w-100 fw-semibold rounded-pill"
@@ -442,7 +433,8 @@ const Careers = () => {
           </div>
           
           {/* Apply Now Form */}
-          <div ref={applyFormRef} className="bg-white p-5 rounded-4 shadow-lg col-lg-8 mx-auto">
+          
+          <div ref={applyFormRef} className={`bg-white p-5 rounded-4 shadow-lg col-lg-8 mx-auto ${showform}`}>
             <h2 className={`h3 fw-bold text-center mb-4 text-cp-primary`}>Apply Now</h2>
             <p className="text-center text-muted mb-4">
                 {selectedJobId ? 
@@ -459,9 +451,9 @@ const Careers = () => {
                 <label htmlFor="fullName" className="form-label small fw-semibold">Full Name</label>
                 <input
                   type="text"
-                  id="fullName"
-                  name="fullName"
-                  value={formData.fullName}
+                  id="candidate_name"
+                  name="candidate_name"
+                  value={formData.candidate_name}
                   onChange={handleChange}
                   required
                   className="form-control p-3 rounded-3"
@@ -483,7 +475,7 @@ const Careers = () => {
               </div>
 
               {/* Phone Number */}
-              <div className="mb-4">
+              {/* <div className="mb-4">
                 <label htmlFor="phoneNumber" className="form-label small fw-semibold">Phone Number</label>
                 <input
                   type="tel"
@@ -494,59 +486,42 @@ const Careers = () => {
                   required
                   className="form-control p-3 rounded-3"
                 />
-              </div>
+              </div> */}
 
               {/* Position Applying For */}
               <div className="mb-4">
                 <label htmlFor="position" className="form-label small fw-semibold">Position You’re Applying For:</label>
-                <select
-                  id="position"
-                  name="position"
+                <input
+                  type='text'
+                  id='position'
+                  name='position'
                   value={formData.position}
                   onChange={handleChange}
                   required
-                  className="form-select p-3 rounded-3"
-                  // Disable selection if a specific job listing was clicked
-                  disabled={!!selectedJobId} 
-                >
-                  <option value="" disabled>
-                    {selectedJobId ? formData.position : 'Select a general role category or apply directly above'}
-                  </option>
-                  {Roles.map(role => (
-                    <option key={role.id} value={role.position}>{role.position}</option>
-                  ))}
-                  <option value="General Application">General Application</option>
-                </select>
-                 {!!selectedJobId && (
-                     <div className="form-text text-success fw-semibold">
-                         Pre-selected from the "Current Openings" list. Clear the form to select a general role.
-                     </div>
-                 )}
+                  disabled
+                  className="form-control p-3 rounded-3"
+                />
+                
               </div>
 
               {/* Upload CV */}
               <div className="mb-4">
-                <label htmlFor="cvFile" className="form-label small fw-semibold">Upload CV (PDF or DOCX preferred)</label>
+                <label htmlFor="cvFile" className="form-label small fw-semibold">Link to your cv</label>
                 <div className="input-group">
                     <input
-                        type="file"
+                        type="text"
                         id="cvFile"
                         name="cvFile"
-                        onChange={handleFileChange}
-                        className="form-control"
+                        onChange={handleChange}
+                        className="form-control p-3 rounded-3"
                         accept=".pdf,.doc,.docx"
                     />
                 </div>
-                {formData.cvFile && (
-                    <div className="mt-2 small text-muted d-flex align-items-center">
-                        <Upload size={14} className="me-2" />
-                        File Selected: {formData.cvFile.name}
-                    </div>
-                )}
+                
               </div>
 
               {/* Tell Us About Yourself */}
-              <div className="mb-4">
+              {/* <div className="mb-4">
                 <label htmlFor="message" className="form-label small fw-semibold">Tell Us About Yourself</label>
                 <textarea
                   id="message"
@@ -557,7 +532,7 @@ const Careers = () => {
                   className="form-control p-3 rounded-3"
                   placeholder="e.g., Your relevant experience, availability, or career goals."
                 ></textarea>
-              </div>
+              </div> */}
 
               {/* Submit Button */}
               <button

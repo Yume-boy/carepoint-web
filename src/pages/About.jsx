@@ -3,7 +3,7 @@ import React from 'react';
 import { ShieldCheck, HandHeart, Users, Globe, HeartPulse, Zap, Briefcase, TrendingUp } from 'lucide-react';
 import PropTypes from "prop-types";
 import values from './values.jpeg'
-import woman from './womanOnAComputer.jpeg'
+import careImage from './about-2.jpeg'
 // --- Configuration ---
 const colorPrimary = '#40BACA'; // Light Cyan/Blue for accents
 const colorAccent = '#2F6F6B'; // Dark Teal/Green for titles and anchors
@@ -133,7 +133,7 @@ const About = () => {
       <div
         className='hero-section text-white text-center'
         style={{
-          background: `linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ), url(${woman})`,
+          background: `linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ), url(${careImage})`,
         }}
       >
         <div className='container'>
@@ -409,7 +409,7 @@ const About = () => {
                 <span className="col-6">Frome</span>
               </div>
               <p className='text-muted mt-4'>
-                <strong>Note:</strong> Nationwide digital wellbeing support is available across the UK.
+                <strong>Note:</strong> Nationwide digital wellbeing support is available within and outside the UK.
               </p>
             </div>
 
@@ -466,7 +466,7 @@ const About = () => {
                 <div className="col-md-4">
                     <p className="d-flex flex-column align-items-center mb-0">
                         <span className="fw-bold fs-4 mb-2"> Location</span>
-                        <span className="fs-5">Based in Bath</span>
+                        <span className="fs-5">Based in Chippenham</span>
                         <span className="fs-5">Serving the Southwest & Nationwide Online</span>
                     </p>
                 </div>

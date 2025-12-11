@@ -5,6 +5,7 @@ import {
   ClipboardCheck,
   Globe,
 } from "lucide-react";
+import careImage from './policyImage.jpeg'
 
 const Policy = () => {
   // Theme Colors (for reference)
@@ -32,11 +33,7 @@ const Policy = () => {
 
         /* --- HERO SECTION --- */
         .hero-banner {
-            background: linear-gradient(
-                rgba(69, 112, 112, 0.86),
-                rgba(44, 50, 51, 0.74)
-                ),
-                url("https://images.pexels.com/photos/5327929/pexels-photo-5327929.jpeg") !important;
+           
             background-size: cover !important;
             background-position: center !important;
             background-repeat: no-repeat !important;
@@ -91,7 +88,10 @@ const Policy = () => {
       </style>
 
       {/* HERO */}
-      <div className="hero-banner text-white text-center">
+      <div className="hero-banner text-white text-center"
+      style={{
+                background: `linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ), url(${careImage})`,
+              }}>
         <div className="container">
           <h2 className="mt-5 fw-semibold display-4">Policies & Compliance</h2>
           <p className="fs-5 mt-3">

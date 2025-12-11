@@ -185,7 +185,7 @@ const Contact = () => {
                     <MapPin size={24} style={{ color: colorPrimary }} className="me-3" />
                     <strong className='fs-5' style={{ color: colorAccent }}>Location & Service Area</strong>
                 </div>
-                <p className='mb-1 ms-4 ps-2 fs-5'>Registered in Bath, United Kingdom</p>
+                <p className='mb-1 ms-4 ps-2 fs-5'>Registered in Chippenham, United Kingdom</p>
                 <p className='mb-0 ms-4 ps-2 small text-muted'>
                     Serving: Chippenham, Bath, Bristol, Somerset, Weston-super-Mare, Cleeveden, Frome, Keynsham. (Online wellbeing services available UK-wide)
                 </p>

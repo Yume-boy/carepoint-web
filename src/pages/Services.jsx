@@ -2,6 +2,7 @@ import React from 'react';
 // Keeping original local image imports and react-router-dom NavLink
 import { NavLink } from 'react-router-dom';
 import service from './service.jpg'
+import careImage from './careImage.jpeg'
 
 
 // New Lucide icons for the new services
@@ -388,9 +389,12 @@ const HCA = () => {
 
 
         {/* Existing Footer Contact Section */}
-        <div style={{backgroundColor: darkCtaBgHex}} className='py-5'>
-          <div className='container text-center text-white py-5' >
-            <h2 className='py-5 fs-1 font-monospace'>Questions before getting started? <NavLink to={'/contact'} className={'text-success'}>Get in touch.</NavLink></h2>
+        <div className='d-md-flex  p-3 p-md-5 '>
+          <div className='w-1/2 px-3 d-flex align-items-center justify-content-center'>
+            <p className='display-4'>We Listen, We understand, and We Care.</p>
+          </div>
+          <div className='w-1/2'>
+            <img src={careImage} className='w-100 img-fluid rounded-4 shadow-lg mx-auto'/>
           </div>
         </div>
 

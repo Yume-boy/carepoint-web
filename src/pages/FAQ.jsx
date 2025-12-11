@@ -74,7 +74,8 @@ const faqData = [
         q: 'Which areas do you cover?',
         a: `We currently serve:
             <ul>
-                <li>Bath (base)</li>
+                <li>Chippenham (base)</li>
+                <li>Bath</li>
                 <li>Bristol</li>
                 <li>Somerset</li>
                 <li>Weston-super-Mare</li>
@@ -406,7 +407,7 @@ const FAQs = () => {
                         <p className="text-muted">Our friendly team is ready to assist you with any further inquiries.</p>
                         <p className="fs-5 fw-bold text-dark">
                             <span className="me-4 d-inline-block"><Clock size={20} className="text-cp-primary me-1" /> Mon - Fri, 9am - 5pm</span>
-                            <span className="d-inline-block"><MapPin size={20} className="text-cp-primary me-1" /> Bath, UK</span>
+                            <span className="d-inline-block"><MapPin size={20} className="text-cp-primary me-1" /> Chippenham, UK</span>
                         </p>
                     </div>
 
