@@ -65,9 +65,11 @@ const CustomStyles = () => (
 
         .hero-banner {
           background-image: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6)), url('${careersHeroUrl}');
-          background-size: cover;
-          background-position: center;
-          min-height: 400px;
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center ",
+          backgroundColor: "#000"
+          height: 500px;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -242,7 +244,17 @@ const Careers = () => {
       <div className="bg-light min-vh-100">
         
         {/* Hero Banner */}
-        <div className="hero-banner text-white p-5">
+        <div className="hero-banner text-white p-5"
+           style={{
+                    // backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(${careImage})`,
+                    backgroundSize: "cover",
+                    backgroundRepeat: "no-repeat",
+                    backgroundPosition: "center ",
+                    backgroundColor: "#000",
+                    height: "500px"
+                  }}
+          
+        >
           <div className="container py-5">
             <div className="col-lg-10 mx-auto">
                 <h1 className="display-3 fw-bolder mb-3 ">

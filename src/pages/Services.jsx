@@ -306,7 +306,7 @@ const HCA = () => {
             backgroundSize: 'cover',
             backgroundPosition: 'center',
             backgroundRepeat: 'no-repeat',
-            height: '400px', // Adjusted height for better responsiveness
+            height: '500px', // Adjusted height for better responsiveness
             display: 'flex',
             alignItems: 'center',
             justifyContent: 'center',

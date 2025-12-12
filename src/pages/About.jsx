@@ -66,8 +66,9 @@ const About = () => {
         /* Hero Styling */
         .hero-section {
           height: 500px;
-          background-size: cover;
+          background-size: contain;
           background-position: center;
+          background-repeat: no-repeat;
           display: flex;
           align-items: center;
           justify-content: center;
@@ -133,8 +134,13 @@ const About = () => {
       <div
         className='hero-section text-white text-center'
         style={{
-          background: `linear-gradient( rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.6) ), url(${careImage})`,
+          backgroundImage: `linear-gradient(rgba(0,0,0,0.6), rgba(0,0,0,0.6)), url(${careImage})`,
+          backgroundSize: "cover",
+          backgroundRepeat: "no-repeat",
+          backgroundPosition: "center ",
+          backgroundColor: "#000"
         }}
+
       >
         <div className='container'>
           <h1 className=''>About CarePoint</h1>

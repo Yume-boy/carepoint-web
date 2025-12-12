@@ -37,7 +37,7 @@ const Policy = () => {
             background-size: cover !important;
             background-position: center !important;
             background-repeat: no-repeat !important;
-            height: 400px !important;
+            height: 500px !important;
             display: flex !important;
             align-items: center !important;
             justify-content: center !important;
