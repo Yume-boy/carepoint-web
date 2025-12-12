@@ -50,6 +50,7 @@ const Contact = () => {
       .then(() => {
         setSuccess(true);
         form.current.reset();
+        setIsSubmitting(false);
       })
       .catch(() => setError(true));
   };
